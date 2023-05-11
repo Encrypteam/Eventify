@@ -23,6 +23,7 @@ def main():
     app.app.app_context().push()
     db.create_all()
     app.run(debug=True, port=os.getenv('PORT'), host='0.0.0.0')
+    return app
 
 
 if __name__ == '__main__':
