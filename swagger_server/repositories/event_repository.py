@@ -1,7 +1,9 @@
 from swagger_server.models.db.event_db import EventModel
 from swagger_server.__main__ import db
 from datetime import datetime
-class EventRepository():
+
+
+class EventRepository:
 
     def __init__(self):
         self.events = EventModel

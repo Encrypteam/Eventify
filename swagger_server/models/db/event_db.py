@@ -2,6 +2,7 @@ from flask_sqlalchemy import SQLAlchemy
 
 db = SQLAlchemy()
 
+
 class EventModel(db.Model):
     __tablename__ = 'events'
     id = db.Column(db.Integer, primary_key=True)
@@ -10,6 +11,4 @@ class EventModel(db.Model):
     latitude = db.Column(db.Numeric(precision=8, scale=6), nullable=False)
     longitude = db.Column(db.Numeric(precision=9, scale=6), nullable=False)
     capacity = db.Column(db.Integer, nullable=False)
-    inscriptions = db.relationship("InscriptionModel", back_populates="event",
-                                                  primaryjoin="InscriptionModel.event_id==EventModel.id",
-                                                  cascade="all, delete-orphan")
+    inscriptions = db.relationship("InscriptionModel", back_populates="events", lazy=True)

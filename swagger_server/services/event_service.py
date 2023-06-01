@@ -1,5 +1,7 @@
 from swagger_server.repositories.event_repository import EventRepository
 from datetime import datetime
+
+
 class EventService:
 
     def __init__(self, repository):
