@@ -11,4 +11,4 @@ class EventModel(db.Model):
     latitude = db.Column(db.Numeric(precision=8, scale=6), nullable=False)
     longitude = db.Column(db.Numeric(precision=9, scale=6), nullable=False)
     capacity = db.Column(db.Integer, nullable=False)
-    inscriptions = db.relationship("InscriptionModel", back_populates="events", lazy=True)
+
