@@ -79,6 +79,4 @@ def upload_file(invitation_code, body=None):  # noqa: E501
 
     :rtype: Event
     """
-    if connexion.request.is_json:
-        body = Object.from_dict(connexion.request.get_json())  # noqa: E501
     return 'do some magic!'

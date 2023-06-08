@@ -36,11 +36,11 @@ class TestEventService(unittest.TestCase):
     def test_get_events_include_past_events_success(self):
         mock_repository = Mock(name='get_events')
         mock_repository.return_value = [{'id': 1, 'description': 'test', 'date': '2021-01-01',
-                   'latitude': 1.0, 'longitude': 1.0, 'capacity': 1},
-                  {'id': 2, 'description': 'test', 'date': '2025-01-01',
-                   'latitude': 1.0, 'longitude': 1.0, 'capacity': 1},
-                  {'id': 3, 'description': 'test', 'date': '2026-01-01',
-                   'latitude': 1.0, 'longitude': 1.0, 'capacity': 1}]
+                                         'latitude': 1.0, 'longitude': 1.0, 'capacity': 1},
+                                        {'id': 2, 'description': 'test', 'date': '2025-01-01',
+                                         'latitude': 1.0, 'longitude': 1.0, 'capacity': 1},
+                                        {'id': 3, 'description': 'test', 'date': '2026-01-01',
+                                         'latitude': 1.0, 'longitude': 1.0, 'capacity': 1}]
 
         with patch.object(self.event_repository, 'get_events', mock_repository):
             self.eventService = EventService(self.event_repository)
@@ -50,23 +50,19 @@ class TestEventService(unittest.TestCase):
 
     def test_get_only_future_events_success(self):
         mock_repository = Mock(name='get_events')
-        mock_repository.return_value = [{'id': 1, 'description': 'test', 'date': dt.datetime.now() - dt.timedelta(days=10),
-                   'latitude': 1.0, 'longitude': 1.0, 'capacity': 1},
-                  {'id': 2, 'description': 'test', 'date': dt.datetime.now() + dt.timedelta(days=36),
-                   'latitude': 1.0, 'longitude': 1.0, 'capacity': 1},
-                  {'id': 3, 'description': 'test', 'date': dt.datetime.now() + dt.timedelta(days=30),
-                   'latitude': 1.0, 'longitude': 1.0, 'capacity': 1}]
+        mock_repository.return_value = [
+            {'id': 1, 'description': 'test', 'date': dt.datetime.now() - dt.timedelta(days=10),
+             'latitude': 1.0, 'longitude': 1.0, 'capacity': 1},
+            {'id': 2, 'description': 'test', 'date': dt.datetime.now() + dt.timedelta(days=36),
+             'latitude': 1.0, 'longitude': 1.0, 'capacity': 1},
+            {'id': 3, 'description': 'test', 'date': dt.datetime.now() + dt.timedelta(days=30),
+             'latitude': 1.0, 'longitude': 1.0, 'capacity': 1}]
 
         with patch.object(self.event_repository, 'get_events', mock_repository):
             self.eventService = EventService(self.event_repository)
             events = self.eventService.get_events(False)
 
         assert len(events) == 2, "Should be 2 events"
-
-
-
-
-
 
     def test_create_event_success(self):
         mock_repository = Mock(name='create_event')
@@ -119,6 +115,3 @@ class TestEventService(unittest.TestCase):
 
         mock_repository.assert_called_once_with(1)
         assert result is True, "Should be True"
-
-
-
