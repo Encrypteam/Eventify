@@ -61,8 +61,7 @@ class TestEventService(unittest.TestCase):
         with patch.object(self.event_repository, 'get_events', mock_repository):
             self.eventService = EventService(self.event_repository)
             events = self.eventService.get_events(False)
-
-        assert len(events) == 2, "Should be 2 events"
+        assert len(list(events)) == 2, "Should be 2 events"
 
     def test_create_event_success(self):
         mock_repository = Mock(name='create_event')

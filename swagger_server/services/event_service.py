@@ -17,6 +17,5 @@ class EventService:
         events = self.event_repository.get_events()
         if not past_events:
             #TODO: fix this filter
-            events = filter(lambda x: x.date > datetime.now(), events)
-        print(events)
+            events = [event for event in events if event['date'] > datetime.now()]
         return events
