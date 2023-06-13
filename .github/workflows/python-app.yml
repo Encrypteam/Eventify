@@ -36,4 +36,4 @@ jobs:
         flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
     - name: Test with unittest
       run: |
-        python -m unittest ./swagger_server/test/repositories/test_event_repository.py ./swagger_server/test/services/test_event_service.py
+        python -m unittest discover -s ./swagger_server/test/ -p "test_*.py"
