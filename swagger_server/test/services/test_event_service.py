@@ -114,3 +114,6 @@ class TestEventService(unittest.TestCase):
 
         mock_repository.assert_called_once_with(1)
         assert result is True, "Should be True"
+
+if __name__ == '__main__':
+    unittest.main()

@@ -6,9 +6,8 @@ import connexion
 
 from swagger_server import encoder
 
-
-
 db = SQLAlchemy()
+
 
 def main():
     load_dotenv()

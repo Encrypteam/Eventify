@@ -51,3 +51,6 @@ class TestEventRepository(unittest.TestCase):
             mock_query.return_value.all.return_value = event_data
             events = self.event_repository.get_events()
         mock_query.assert_called_once_with(EventModel)
+        
+if __name__ == '__main__':
+    unittest.main()
