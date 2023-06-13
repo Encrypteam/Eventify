@@ -24,6 +24,7 @@ and open your browser to here:
 http://localhost:8080/api/v3/ui/
 ```
 
+
 Your Swagger definition lives here:
 
 ```
