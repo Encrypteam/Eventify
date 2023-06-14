@@ -3,82 +3,40 @@ import six
 
 from swagger_server.models.event import Event  # noqa: E501
 from swagger_server import util
+from flask import Blueprint, request, jsonify
+
+eventy = Blueprint('eventy', __name__, url_prefix='/events')
 
 
-def events_id_inscriptions_guid_get(event_id):  # noqa: E501
-    """Find event by ID
+@eventy.route('/', methods=['GET'])
+def events_get():
+    return jsonify({'message': 'events_get'})
 
-    Return inscription for one user (guid) # noqa: E501
+@eventy.route('/event/<int:id>/<int:guid>', methods=['GET'])
+def events_id_inscriptions_guid_get(id, guid):
 
-    :param event_id: ID of event to return
-    :type event_id: int
+    response_data = {
+        'id': id,
+        'guid': guid,
+        'message': 'events_id_inscriptions_guid_get'
+    }
 
-    :rtype: Event
-    """
-    return 'do some magic!'
+    return jsonify(response_data)
 
 
+@eventy.route('/status', methods=['POST'])
 def find_events_by_status(status=None):  # noqa: E501
-    """Finds Events by status
+    return jsonify({'message': 'find_events_by_status'})
 
-    Multiple status values can be provided with comma separated strings # noqa: E501
-
-    :param status: Status values that need to be considered for filter
-    :type status: str
-
-    :rtype: List[Event]
-    """
-    return 'do some magic!'
+@eventy.route('/<id>', methods=['GET'])
+def get_event_by_id(id):
+    return jsonify({'message': 'get_event_by_id'})
+@eventy.route('/event/<id>', methods=['PUT'])
+def update_event_with_form(id, name=None, surname=None, telephone=None, dni=None, mail=None):
+    return jsonify({'message': 'update_event_with_form'})
 
 
-def get_event_by_id(event_id):  # noqa: E501
-    """Find event by ID
+@eventy.route('/file', methods=['POST'])
+def upload_file():
+    return jsonify({'message': 'upload_file'})
 
-    Returns a single event # noqa: E501
-
-    :param event_id: ID of event to return
-    :type event_id: int
-
-    :rtype: Event
-    """
-    return 'do some magic!'
-
-
-def update_event_with_form(event_id, name=None, surname=None, telephone=None, dni=None, mail=None):  # noqa: E501
-    """Inscription in an event
-
-     # noqa: E501
-
-    :param event_id: ID of event that needs to be updated
-    :type event_id: int
-    :param name: Name of the user
-    :type name: str
-    :param surname: Surname of the user
-    :type surname: str
-    :param telephone: Telephone of the user
-    :type telephone: int
-    :param dni: dni of the user
-    :type dni: int
-    :param mail: mail of the user
-    :type mail: str
-
-    :rtype: None
-    """
-    return 'do some magic!'
-
-
-def upload_file(invitation_code, body=None):  # noqa: E501
-    """upload_file
-
-     # noqa: E501
-
-    :param invitation_code: Delete inscription
-    :type invitation_code: int
-    :param body: 
-    :type body: dict | bytes
-
-    :rtype: Event
-    """
-    if connexion.request.is_json:
-        body = Object.from_dict(connexion.request.get_json())  # noqa: E501
-    return 'do some magic!'
