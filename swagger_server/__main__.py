@@ -3,13 +3,13 @@ import os
 from flask_sqlalchemy import SQLAlchemy
 from dotenv import load_dotenv
 import connexion
-
+import pymysql
 from swagger_server import encoder
 
+pymysql.install_as_MySQLdb()
 db = SQLAlchemy()
 
-
-def main():
+def create_app():
     load_dotenv()
     app = connexion.App(__name__, specification_dir='./swagger/')
     app.app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
@@ -21,9 +21,10 @@ def main():
     db.init_app(app.app)
     app.app.app_context().push()
     db.create_all()
-    app.run(debug=True, port=os.getenv('PORT'), host='0.0.0.0')
     return app
 
-
 if __name__ == '__main__':
-    main()
+    app = create_app()
+    from swagger_server.controllers import eventy
+    app.app.register_blueprint(eventy)
+    app.run(debug=True, port=os.getenv('PORT'), host='0.0.0.0')
